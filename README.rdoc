@@ -5,12 +5,14 @@ create,update,delete,fetch(rank of user,rank of score,list of near score,toplist
 See spec/ranking-simpledb_spec.rb
 
 === sample
-  ranking = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],ranking_name)
   num_win = 1
   num_win2 = 2
   u_id = 1000
   u_id2 = 1001
   u_id3 = 1003
+  ranking_name = "num_win_ranking"
+  end_point="sdb.ap-northeast-1.amazonaws.com"
+  ranking = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],ranking_name,end_point)
   ranking.upsert(@u_id,@num_win)
   ranking.upsert(@u_id2,@num_win)
   ranking.upsert(@u_id3,@num_win2)

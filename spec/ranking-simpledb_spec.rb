@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe RankingSimpledb do
   before(:all) do
     @ranking_name = "num_of_win"
-    @rank = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],@ranking_name)
+    @rank = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],@ranking_name,"sdb.ap-northeast-1.amazonaws.com")
     @list_num = 10
     @num_win = 1
     @num_win2 = 2
@@ -118,7 +118,7 @@ describe RankingSimpledb do
   end
   after(:all) do
     @ranking_name = "num_of_win"
-    @rank = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],@ranking_name)
+    @rank = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],@ranking_name,"sdb.ap-northeast-1.amazonaws.com")
     @rank.domain.delete!
   end
 end

@@ -4,32 +4,32 @@ create,update,delete,fetch(rank of user,rank of score,list of near score,toplist
 
 See spec/ranking-simpledb_spec.rb
 
-== sample
-ranking = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],ranking_name)
-num_win = 1
-num_win2 = 2
-u_id = 1000
-u_id2 = 1001
-u_id3 = 1003
-ranking.upsert(@u_id,@num_win)
-ranking.upsert(@u_id2,@num_win)
-ranking.upsert(@u_id3,@num_win2)
-ranking.upsert(@u_id2,@num_win2)
-ranking.rank_by_u_id(@u_id) => 3
-ranking.rank_by_u_id(@u_id2) => 1
-ranking.rank_by_u_id(@u_id3) => 1
-ranking.rank_by_score(@num_win2) => 1
-ranking.rank_by_score(@num_win) => 3
-rank.top() => {"score"=>2,"id_score" => "000000000002000000000003,"u_id" => 3,"rank" => 1}
-ranking.top_list(2) => 
-  [ {"score"=>2,"id_score" => "000000000002000000000003,"u_id" => 3,"rank" => 1},{"score"=>2,"id_score" => "000000000002000000000002,"u_id" => 2,"rank" => 1}]
-ranking.next_list(2,"000000000002000000000003") =>
-  [ {"score"=>2,"id_score" => "000000000002000000000002,"u_id" => 2,"rank" => 1},{"score"=>1,"id_score" => "000000000001000000000001,"u_id" => 1,"rank" => 3}]
-ranking.next_list(2,"000000000002000000000002") =>
-  [ {"score"=>1,"id_score" => "000000000001000000000001,"u_id" => 1,"rank" => 3}]
-ranking.prev_list(2,"000000000002000000000002") =>  [ {"score"=>2,"id_score" => "000000000002000000000003,"u_id" => 3,"rank" => 1}]
-ranking.my_list(2,"000000000002000000000002") =>  
-  [ {"score"=>2,"id_score" => "000000000002000000000002,"u_id" => 2,"rank" => 1},{"score"=>1,"id_score" => "000000000001000000000001,"u_id" => 1,"rank" => 3}]
+=== sample
+  ranking = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],ranking_name)
+  num_win = 1
+  num_win2 = 2
+  u_id = 1000
+  u_id2 = 1001
+  u_id3 = 1003
+  ranking.upsert(@u_id,@num_win)
+  ranking.upsert(@u_id2,@num_win)
+  ranking.upsert(@u_id3,@num_win2)
+  ranking.upsert(@u_id2,@num_win2)
+  ranking.rank_by_u_id(@u_id) => 3
+  ranking.rank_by_u_id(@u_id2) => 1
+  ranking.rank_by_u_id(@u_id3) => 1
+  ranking.rank_by_score(@num_win2) => 1
+  ranking.rank_by_score(@num_win) => 3
+  rank.top() => {"score"=>2,"id_score" => "000000000002000000000003,"u_id" => 3,"rank" => 1}
+  ranking.top_list(2) => 
+    [ {"score"=>2,"id_score" => "000000000002000000000003,"u_id" => 3,"rank" => 1},{"score"=>2,"id_score" => "000000000002000000000002,"u_id" => 2,"rank" => 1}]
+  ranking.next_list(2,"000000000002000000000003") =>
+    [ {"score"=>2,"id_score" => "000000000002000000000002,"u_id" => 2,"rank" => 1},{"score"=>1,"id_score" => "000000000001000000000001,"u_id" => 1,"rank" => 3}]
+  ranking.next_list(2,"000000000002000000000002") =>
+    [ {"score"=>1,"id_score" => "000000000001000000000001,"u_id" => 1,"rank" => 3}]
+  ranking.prev_list(2,"000000000002000000000002") =>  [ {"score"=>2,"id_score" => "000000000002000000000003,"u_id" => 3,"rank" => 1}]
+  ranking.my_list(2,"000000000002000000000002") =>  
+    [ {"score"=>2,"id_score" => "000000000002000000000002,"u_id" => 2,"rank" => 1},{"score"=>1,"id_score" => "000000000001000000000001,"u_id" => 1,"rank" => 3}]
 
 == Contributing to ranking-simpledb
  

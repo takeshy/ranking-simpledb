@@ -118,7 +118,7 @@ describe RankingSimpledb do
   end
   after(:all) do
     @ranking_name = "num_of_win"
-    @rank = RankingSimpledb.new(@ranking_name)
+    @rank = RankingSimpledb.new(ENV["AWS_ACCESS_KEY"],ENV["AWS_SECRET_ACCESS_KEY"],@ranking_name)
     @rank.domain.delete!
   end
 end

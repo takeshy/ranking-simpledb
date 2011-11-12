@@ -2,6 +2,7 @@
 require 'aws-sdk'
 class RankingSimpledb
  attr :domain
+ @@db=nil
 
   #
   # change integer score to string score
@@ -37,12 +38,11 @@ class RankingSimpledb
   # domain(tableみたいなもの)を作成
   #
   def initialize(access_key,secret_access_key,ranking_name)
-    AWS.config({
-      :access_key_id => access_key,
-      :secret_access_key => secret_access_key,
-    })
-    db = AWS::SimpleDB.new()
-    @domain = db.domains.create(ranking_name)
+    unless @@db 
+	AWS.config({ :access_key_id => access_key, :secret_access_key => secret_access_key, })
+        @@db = AWS::SimpleDB.new()
+    end
+    @domain = @@db.domains.create(ranking_name)
   end
 
   #

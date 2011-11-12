@@ -2,6 +2,7 @@
 require 'aws-sdk'
 class RankingSimpledb
  attr :domain
+ @@db = nil
   #
   # change integer score to string score
   # スコアの文字列化(文字列比較の場合に整数順になるようゼロパディング)
@@ -35,11 +36,14 @@ class RankingSimpledb
   # create domain
   # domain(tableみたいなもの)を作成
   #
-  def initialize(access_key,secret_access_key,ranking_name,simple_db_endpoint = "sdb.ap-northeast-1.amazonaws.com")
-    AWS.config({ :access_key_id => access_key, :secret_access_key => secret_access_key,
-               :simple_db_endpoint => simple_db_endpoint })
-    db = AWS::SimpleDB.new()
-    @domain = db.domains.create(ranking_name)
+  def initialize(access_key,secret_access_key,ranking_name,
+                 simple_db_endpoint = "sdb.ap-northeast-1.amazonaws.com",max_retries => 2)
+    unless @@db
+      AWS.config({ :access_key_id => access_key, :secret_access_key => secret_access_key,
+                 :simple_db_endpoint => simple_db_endpoint,:max_retries => max_retries})
+      @@db = AWS::SimpleDB.new()
+    end
+    @domain = @@db.domains.create(ranking_name)
   end
 
   #

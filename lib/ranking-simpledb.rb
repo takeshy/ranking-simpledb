@@ -2,16 +2,6 @@
 require 'aws-sdk'
 class RankingSimpledb
  attr :domain
- AWS.config({
-    :access_key_id => 'your access key',
-    :secret_access_key => 'your secret access key',
-  })
-  @@db = AWS::SimpleDB.new()
-
-  #SimpleDB Object
-  def self.db
-    @@db
-  end
 
   #スコアの文字列化(文字列比較の場合に整数順になるようゼロパディング)
   def self.score_str(score)
@@ -34,8 +24,13 @@ class RankingSimpledb
   end
 
   #domain(tableみたいなもの)を作成
-  def initialize(key)
-    @domain = self.class.db.domains.create(key)
+  def initialize(access_key,secret_access_key,ranking_name)
+    AWS.config({
+      :access_key_id => access_key,
+      :secret_access_key => secret_access_key,
+    })
+    db = AWS::SimpleDB.new()
+    @domain = db.domains.create(ranking_name)
   end
 
   #同じ主キーがあった場合は、自動的に書き換えられる

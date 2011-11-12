@@ -1,6 +1,65 @@
 = ranking-simpledb
 
-Description goes here.
+create,update,delete,fetch(rank of user,rank of score,list of near score,toplist,pagenate) ranking data on amazon simple db.
+
+See spec/ranking-simpledb_spec.rb
+
+h2. initialize(access_key,secret_access_key,ranking_name)
+
+create ranking model.
+
+h2. upsert(u_id,score)
+
+update ranking data. if u_id does not exist, create new data. if u_id exists in ranking, override new score
+
+h2. delete(u_id)
+
+delete ranking data specified by u_id
+
+h2. rank_of_u_id(u_id)
+
+rank of u_id
+
+h2. score_of_u_id(u_id)
+
+score of u_id
+
+h2. rank_by_score(score)
+
+rank by score
+
+h2. user_num_of_score(score)
+number of user in the score. same score user.
+
+h2. top
+
+return ranking top recored
+{"score"=>score,"id_score" => score+u_id(zero padding),"u_id" => u_id,"rank" => 1},
+if same score exist,return only one u_id record(most higher u_id)
+
+h2. top_list(list_num)
+
+top (list_num) list.
+
+[
+  {"score"=>score,"id_score" => score+u_id(zero padding),"u_id" => u_id,"rank" => 1},
+  {"score"=>score,"id_score" => score+u_id(zero padding),"u_id" => u_id,"rank" => 2},
+              :
+]
+
+h2. prev_list(list_num,id_score,inc=false)
+
+return list_num record below id_score. if inc is true, include specified id_score_record. 
+use for paginate.
+
+h2. next_list(list_num,id_score,inc=false)
+
+return list_num record above id_score. if inc is true, include specified id_score_record. 
+use for paginate.
+
+h2. my_list(list_num,u_id)
+
+return list_num recored near u_id's score. include u_id score.
 
 == Contributing to ranking-simpledb
  
@@ -16,4 +75,3 @@ Description goes here.
 
 Copyright (c) 2011 Takeshi Morita. See LICENSE.txt for
 further details.
-

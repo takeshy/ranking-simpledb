@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ranking-simpledb}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Takeshi Morita"]
-  s.date = %q{2011-11-12}
+  s.date = %q{2011-11-13}
   s.description = %q{you can create and update and delete and fetch(score of user,rank of user,pagenate) ranking_data on amazon simpledb.}
   s.email = %q{laten@nifty.com}
   s.extra_rdoc_files = [
@@ -20,11 +20,13 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
     "lib/ranking-simpledb.rb",
+    "ranking-simpledb.gemspec",
     "spec/ranking-simpledb_spec.rb",
     "spec/spec_helper.rb"
   ]

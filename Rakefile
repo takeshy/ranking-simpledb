@@ -17,9 +17,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ranking-simpledb"
   gem.homepage = "http://github.com/takeshy/ranking-simpledb"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "morita@ibrains.co.jp"
+  gem.summary = %Q{library for ranking using ranking-simpledb}
+  gem.description = %Q{you can create and update and delete and fetch(score of user,rank of user,pagenate) ranking_data on amazon simpledb.}
+  gem.email = "laten@nifty.com"
   gem.authors = ["Takeshi Morita"]
   # dependencies defined in Gemfile
 end

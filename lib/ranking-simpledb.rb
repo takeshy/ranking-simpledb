@@ -37,7 +37,7 @@ class RankingSimpledb
   # domain(tableみたいなもの)を作成
   #
   def initialize(access_key,secret_access_key,ranking_name,
-                 simple_db_endpoint = "sdb.ap-northeast-1.amazonaws.com",max_retries => 2)
+                 simple_db_endpoint = "sdb.ap-northeast-1.amazonaws.com",max_retries = 2)
     unless @@db
       AWS.config({ :access_key_id => access_key, :secret_access_key => secret_access_key,
                  :simple_db_endpoint => simple_db_endpoint,:max_retries => max_retries})
